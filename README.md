@@ -202,7 +202,7 @@ MQTT integration is disabled by default. To enable, uncomment the lines in the y
 - **ESPHome webserver is crashing** The web server was disabled because it was crashing the ESP32. due the blocking nature of Emon library. You may be able to run it if you decrease the CROSSINGS setting in *esp32emon.h*.
 
 ## Download sources
-- [GitHub repository](https://github.com/danpeig/ESP32EnergyMonitor/)
+- [GitHub Releases](https://github.com/danpeig/ESP32EnergyMonitor/releases/)
 
 ## Further reading and references
 - [Savjee Home Energy monitor with ESP32](https://savjee.be/blog/Home-Energy-Monitor-ESP32-CT-Sensor-Emonlib/)
