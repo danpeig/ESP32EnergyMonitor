@@ -1,0 +1,266 @@
+# Platform settings
+esphome:
+  name: esp32emon
+  name_add_mac_suffix: true
+  includes:
+    - emonlib/EmonLib.h
+    - emonlib/EmonLib.cpp
+    - esp32emon.h
+  project:
+    name: danpeig.esp32emon
+    version: "1.0"
+
+# Board configuration
+esp32:
+  board: esp32doit-devkit-v1
+  framework:
+    type: arduino
+
+# Sets up Bluetooth LE (Only on ESP32) to allow the user
+# to provision wifi credentials to the device.
+esp32_improv:
+  authorizer: none
+
+# Sets up the improv via serial client for Wi-Fi provisioning
+improv_serial:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+# Enable OTA updates
+ota:
+  password: !secret ota_password
+
+# Wifi configuration
+wifi:
+  networks:
+    # Main network
+    - ssid: !secret wifi_ssid
+      password: !secret wifi_password
+    # Alternative network
+    - ssid: !secret wifi_ssid2
+      password: !secret wifi_password2
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Esp32EnergyMeter"
+    password: !secret wifi_ap_password
+
+captive_portal:
+
+# MQTT Integration
+#mqtt:
+#  broker: !secret mqtt_broker
+#  port: !secret mqtt_port
+#  username: !secret mqtt_user
+#  password: !secret mqtt_password
+#  discovery: false #We are using the default API for Home Assistant discovery, no need for MQTT
+
+# Timers configuration
+time:
+  - platform: sntp
+    id: sntp_time1
+    on_time:
+      # Every Month at specified day
+      - seconds: 0
+        minutes: 0
+        hours: 0
+        days_of_month: 1
+        then:
+          - sensor.integration.reset: total_energy_month #Reset power integrator
+      # Every Week at specified day
+      - seconds: 0
+        minutes: 0
+        hours: 0
+        days_of_week: MON
+        then:
+          - sensor.integration.reset: total_energy_week #Reset power integrator
+      # Every Day at specified hour
+      - seconds: 0
+        minutes: 0
+        hours: 0
+        then:
+          - sensor.integration.reset: total_energy_day #Reset power integrator
+
+sensor:
+  #Custom sensors from EMon
+  - platform: custom
+    lambda: |-
+      auto my_sensor = new MyPowerSensor();
+      App.register_component(my_sensor);
+
+      // 1-Phase - - uncomment only the following line for 1 phase measurements
+      //return {my_sensor->realpower_sensor1, my_sensor->apparentpower_sensor1, my_sensor->powerfactor_sensor1, my_sensor->supplyvoltage_sensor1, my_sensor->current_sensor1, my_sensor->realpower_sensor_total, my_sensor->apparentpower_sensor_total, my_sensor->current_sensor_total};
+
+      // 2-Phases - uncomment only the following line for 2 phase measurements
+      return {my_sensor->realpower_sensor1, my_sensor->apparentpower_sensor1, my_sensor->powerfactor_sensor1, my_sensor->supplyvoltage_sensor1, my_sensor->current_sensor1, my_sensor->realpower_sensor2, my_sensor->apparentpower_sensor2, my_sensor->powerfactor_sensor2, my_sensor->supplyvoltage_sensor2, my_sensor->current_sensor2, my_sensor->realpower_sensor_total, my_sensor->apparentpower_sensor_total, my_sensor->current_sensor_total};
+
+      // 3-Phases - uncomment only the following line for 3 phase measurements
+      //return {my_sensor->realpower_sensor1, my_sensor->apparentpower_sensor1, my_sensor->powerfactor_sensor1, my_sensor->supplyvoltage_sensor1, my_sensor->current_sensor1, my_sensor->realpower_sensor2, my_sensor->apparentpower_sensor2, my_sensor->powerfactor_sensor2, my_sensor->supplyvoltage_sensor2, my_sensor->current_sensor2, my_sensor->realpower_sensor3, my_sensor->apparentpower_sensor3, my_sensor->powerfactor_sensor3, my_sensor->supplyvoltage_sensor3, my_sensor->current_sensor3, my_sensor->realpower_sensor_total, my_sensor->apparentpower_sensor_total, my_sensor->current_sensor_total};
+    sensors:
+      #Phase 1 sensors
+      - name: "Real Power P1"
+        device_class: "power"
+        unit_of_measurement: W
+        state_class: "measurement"
+        accuracy_decimals: 1
+        internal: false
+      - name: "Apparent Power P1"
+        device_class: "apparent_power"
+        unit_of_measurement: VA
+        state_class: "measurement"
+        accuracy_decimals: 1
+        internal: false
+      - name: "Power Factor P1"
+        device_class: "power_factor"
+        accuracy_decimals: 2
+        internal: false
+      - name: "Voltage P1"
+        device_class: "voltage"
+        unit_of_measurement: V
+        accuracy_decimals: 1
+        internal: false
+      - name: "Current P1"
+        device_class: "current"
+        unit_of_measurement: A
+        accuracy_decimals: 1
+        internal: false
+
+        #Phase 2 sensors
+      - name: "Real Power P2"
+        device_class: "power"
+        unit_of_measurement: W
+        state_class: "measurement"
+        accuracy_decimals: 1
+        internal: false
+      - name: "Apparent Power P2"
+        device_class: "apparent_power"
+        unit_of_measurement: VA
+        state_class: "measurement"
+        accuracy_decimals: 1
+        internal: false
+      - name: "Power Factor P2"
+        device_class: "power_factor"
+        accuracy_decimals: 2
+        internal: false
+      - name: "Voltage P2"
+        device_class: "voltage"
+        unit_of_measurement: V
+        accuracy_decimals: 1
+      - name: "Current P2"
+        device_class: "current"
+        unit_of_measurement: A
+        accuracy_decimals: 1
+        internal: false
+
+      #  #Phase 3 sensors
+      #- name: "Real Power P3"
+      #  device_class: "power"
+      #  unit_of_measurement: W
+      #  state_class: "measurement"
+      #  accuracy_decimals: 1
+      #  internal: false
+      #- name: "Apparent Power P3"
+      #  device_class: "apparent_power"
+      #  unit_of_measurement: VA
+      #  state_class: "measurement"
+      #  accuracy_decimals: 1
+      #  internal: false
+      #- name: "Power Factor P3"
+      #  device_class: "power_factor"
+      #  accuracy_decimals: 2
+      #  internal: false
+      #- name: "Voltage P3"
+      #  device_class: "voltage"
+      #  unit_of_measurement: V
+      #  accuracy_decimals: 1
+      #- name: "Current P3"
+      #  device_class: "current"
+      #  unit_of_measurement: A
+      #  accuracy_decimals: 1
+      #  internal: false
+
+      #Total sensors
+      - name: "Total Real Power"
+        id: "real_power_sensor_total"
+        device_class: "power"
+        state_class: "measurement"
+        unit_of_measurement: W
+        accuracy_decimals: 1
+        internal: false
+        filters:
+          - lambda: |-
+              //Avoid corrupting integration sensors
+              if(!isinf(x) && !isnan(x) && x >= 0)
+                {
+                return x;
+                }
+              else
+                {
+                return 0;
+                }
+      - name: "Total Apparent Power"
+        device_class: "apparent_power"
+        state_class: "measurement"
+        unit_of_measurement: VA
+        accuracy_decimals: 1
+        internal: false
+        filters:
+          - lambda: |-
+              //Avoid corrupting integration sensors
+              if(!isinf(x) && !isnan(x) && x >= 0)
+                {
+                return x;
+                }
+              else
+                {
+                return 0;
+                }
+      - name: "Total Current"
+        device_class: "current"
+        state_class: "measurement"
+        unit_of_measurement: A
+        accuracy_decimals: 1
+        internal: false
+
+  - platform: integration
+    name: "Daily Consumption"
+    id: "total_energy_day"
+    sensor: real_power_sensor_total
+    time_unit: h
+    device_class: "energy"
+    state_class: "total_increasing"
+    unit_of_measurement: kWh
+    accuracy_decimals: 2
+    restore: false #If true, save the reading to the flash memory to prevent data loss in case of power loss
+    filters:
+      - multiply: 0.001
+
+  - platform: integration
+    name: "Weekly Consumption"
+    id: "total_energy_week"
+    sensor: real_power_sensor_total
+    time_unit: h
+    device_class: "energy"
+    state_class: "total_increasing"
+    unit_of_measurement: kWh
+    accuracy_decimals: 2
+    restore: false #If true, save the reading to the flash memory to prevent data loss in case of power loss
+    filters:
+      - multiply: 0.001
+
+  - platform: integration
+    name: "Monthly Consumption"
+    id: "total_energy_month"
+    sensor: real_power_sensor_total
+    time_unit: h
+    device_class: "energy"
+    state_class: "total_increasing"
+    unit_of_measurement: kWh
+    accuracy_decimals: 2
+    restore: false #If true, save the reading to the flash memory to prevent data loss in case of power loss
+    filters:
+      - multiply: 0.001
