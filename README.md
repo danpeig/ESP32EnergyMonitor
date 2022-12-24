@@ -1,9 +1,9 @@
 # ESP32 Open Source Energy Monitor
 
 ## Introduction
-For months I've been looking for a non-intrusive energy monitoring solution for my home. The residence receives two phases from the utility company and because of that, the available solutions in the market based on open protocols are extremely expensive. Cheap alternatives always rely on cloud services and I don't believe any of them will remain online for too long.
+For months I've been looking for a non-intrusive energy monitoring solution for my home. The residence receives more than one phase from the utility company and because of that, the available solutions in the market based on open protocols are extremely expensive. Cheap alternatives always rely on cloud services and I don't believe any of them will remain online for too long.
 
-The solution I present here was built on the top of [Open Energy Monitor](https://openenergymonitor.org/) experience and uses [ESPHome framework](https://esphome.io/). I selected the ESP32 controller because it has several analog ports to measure voltage and current.
+The solution I present here is a DIY project built on the top of [Open Energy Monitor](https://openenergymonitor.org/) and [ESPHome framework](https://esphome.io/). I selected the ESP32 controller because it has several analog ports to measure voltage and current.
 
 ## Features
 - 1 to 3 phase current measurement
@@ -74,12 +74,14 @@ The voltage meter must be installed between the **neutral line** and one **phase
 
 ## Software
 
-The project repository contains 3 firmware for the ESP32:
+The [project repository](https://github.com/danpeig/ESP32EnergyMonitor/) contains 3 firmware sources for the ESP32:
 1. The voltage sensor potentiometer calibration tool. It is used only once to set the position of the potentiometer screw.
-2. The voltage and current sensor calibration tool. It provides a quick way to determinate all calibration coefficients. You could do this directly from the ESPHome firmware but it takes much longer to compile, boot and measure.
+2. The voltage and current sensor calibration tool. It provides a quick way to determinate all calibration coefficients. You could do this directly from the ESPHome firmware but it takes much longer to compile, boot and measure. This tool can also be used to build your own firmware without using ESPHome.
 3. The final ESPHome firmware source.
 
 All tools require editing some configuration files before uploading to the ESP32 board.
+
+**NOTE:** The EmonLib used in the package was modified by [Savjee](https://github.com/Savjee/EmonLib-esp32) to support the ESP32 board.
 
 ### Requirements
 - [ESPHome](https://esphome.io/)
@@ -198,6 +200,9 @@ MQTT integration is disabled by default. To enable, uncomment the lines in the y
 - **Losing Wifi or MQTT connection** Try to decrease the CROSSINGS setting in *esp32emon.h*. The blocking nature for Emonlib sometimes does this.
 
 - **ESPHome webserver is crashing** The web server was disabled because it was crashing the ESP32. due the blocking nature of Emon library. You may be able to run it if you decrease the CROSSINGS setting in *esp32emon.h*.
+
+## Download sources
+- [GitHub repository](https://github.com/danpeig/ESP32EnergyMonitor/)
 
 ## Further reading and references
 - [Savjee Home Energy monitor with ESP32](https://savjee.be/blog/Home-Energy-Monitor-ESP32-CT-Sensor-Emonlib/)
