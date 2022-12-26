@@ -32,7 +32,7 @@ N = number of phases to be measured (1, 2 or 3)
 
 - 1 x ESP32 Dev Kit V1
 - 1 x 5V USB power supply with micro USB cable
-- 1 x ZMPT101B AC Transformer Module 250VAC, 5-30VDC
+- 1 x ZMPT101B AC Transformer Module 250VAC, 5-30VDC. For most use cases, one voltage meter is enough even if there are more phases.
 - N x SCT013 Split Core Current Transformer 100A-50mA. Other models can be used, see below.
 - 2 x N x 10 kOhm resistor
 - N x 10uF electrolytic capacitor
@@ -132,7 +132,7 @@ This piece of code can also be used to create your own Energy Monitoring solutio
 7. Compile and update the code from Arduino IDE.
 8. Watch the values in the serial terminal and wait for them to stabilize. Use 115200bps as baud rate.
 9. Take a note of the measured current (I) and voltage (V) from the ESP32 and the current and voltage from the reference voltmeter (Vr) and ammeter (Ir).
-10. Calculate the calibration factors: CVnew = Vr*CVold/V, CInew = Ir*CIold/I where CVold and CIold are the previous calibrations from the sketch (initially 1000).
+10. Calculate the calibration factors: CVnew = Vr x CVold/V, CInew = Ir x CIold/I where CVold and CIold are the previous calibrations from the sketch (initially 1000).
 11. Change the values under the "Calibration" section of the code to the calculated ones (CInew and CVnew).
 12. Compile and upload the code again, watch the serial monitor until the data stabilizes and then check if the measurements are correct.
 13. Repeat steps 8 to 12 if necessary.
