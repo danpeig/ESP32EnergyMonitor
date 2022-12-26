@@ -8,6 +8,7 @@ The solution I present here is a DIY project built on the top of [Open Energy Mo
 ## Features
 - 1 to 3 phase current measurement
 - 1 to 3 phase voltage measurement
+- Non-intrusive: There is no need to disconnect, cut or peel power cables
 - ESPHome based firmware
 - Generic firmware source that can be used without ESPHome (*calibrate-vi.ino*)
 - Plug and Play integration with [Home Assistant](https://www.home-assistant.io/)
