@@ -132,8 +132,8 @@ This piece of code can also be used to create your own Energy Monitoring solutio
 7. Compile and update the code from Arduino IDE.
 8. Watch the values in the serial terminal and wait for them to stabilize. Use 115200bps as baud rate.
 9. Take a note of the measured current (I) and voltage (V) from the ESP32 and the current and voltage from the reference voltmeter (Vr) and ammeter (Ir).
-10. Calculate the calibration factors: CVnew = Vr x CVold/V, CInew = Ir x CIold/I where CVold and CIold are the previous calibrations from the sketch (initially 1000).
-11. Change the values under the "Calibration" section of the code to the calculated ones (CInew and CVnew).
+10. Calculate the calibration factors: CV<sub>new</sub> = Vr x CV<sub>old</sub>/V, CI<sub>new</sub> = Ir x CI<sub>old</sub>/I where CV<sub>old</sub> and CI<sub>old</sub> are the previous calibrations from the sketch (initially 1000).
+11. Change the values under the "Calibration" section of the code to the calculated ones (CI<sub>new</sub> and CV<sub>new</sub>).
 12. Compile and upload the code again, watch the serial monitor until the data stabilizes and then check if the measurements are correct.
 13. Repeat steps 8 to 12 if necessary.
 
