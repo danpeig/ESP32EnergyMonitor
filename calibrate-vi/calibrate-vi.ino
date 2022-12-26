@@ -73,10 +73,13 @@ void setup()
   // Phase 3
   // emon3.voltage(V3, CV3, 1.732);  // Voltage: input pin, calibration, phase_shift
   // emon3.current(I3, CI3);       // Current: input pin, calibration.
+
 }
 
 void loop()
 {
+
+  Serial.println("------------");
 
   // Phase 1
   emon1.calcVI(120, 2000); // Calculate all. No.of half wavelengths (crossings), time-out

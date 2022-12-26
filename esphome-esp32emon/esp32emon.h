@@ -23,12 +23,12 @@
 #define I3 33
 
 // Calibration for voltage sensors CV and current sensors CI
-#define CV1 540
-#define CV2 540 //Set to CV1 if using only one voltage meter
-#define CV3 540 //Set to CV1 if using only one voltage meter
+#define CV1 545
+#define CV2 545 //Set to CV1 if using only one voltage meter
+#define CV3 545 //Set to CV1 if using only one voltage meter
 
-#define CI1 94.97
-#define CI2 94.06
+#define CI1 96.72
+#define CI2 94.93
 #define CI3 1
 
 class MyPowerSensor : public PollingComponent, public Sensor
@@ -36,7 +36,7 @@ class MyPowerSensor : public PollingComponent, public Sensor
 public:
   MyPowerSensor() : PollingComponent(POLLING_INTERVAL) {}
 
-  float get_setup_priority() const override { return esphome::setup_priority::AFTER_WIFI; }
+  float get_setup_priority() const override { return esphome::setup_priority::LATE; }
 
   EnergyMonitor emon1; // Phase 1
   EnergyMonitor emon2; // Phase 2
