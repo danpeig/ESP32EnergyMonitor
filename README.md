@@ -9,14 +9,15 @@ The solution I present here is a DIY project built on the top of [Open Energy Mo
 - 1 to 3 phase current measurement
 - 1 to 3 phase voltage measurement
 - Non-intrusive: There is no need to disconnect, cut or peel power cables
-- ESPHome based firmware
-- Generic firmware source that can be used without ESPHome (*calibrate-vi.ino*)
+- [ESPHome](https://esphome.io/) based firmware
+- Generic firmware source (*calibrate-vi.ino*) that can run without ESPHome 
 - Plug and Play integration with [Home Assistant](https://www.home-assistant.io/)
 - Ready for [Home Assistant](https://www.home-assistant.io/) energy dashboard
 - MQTT integration option
+- Persistent data option (keep the values in case of power loss)
 - No cloud services required
 - 100% open source
-- Extremely cheap to build
+- Uses low cost globally available components
 - Outputs:
   - Apparent power (VA)
   - Real power (W)
@@ -29,7 +30,7 @@ The solution I present here is a DIY project built on the top of [Open Energy Mo
 
 ## Hardware
 
-### Parts list
+### Part list
 
 N = number of phases to be measured (1, 2 or 3)
 
