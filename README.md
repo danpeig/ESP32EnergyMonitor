@@ -24,6 +24,7 @@ The solution I present here is a DIY project built on the top of [Open Energy Mo
   - Daily energy consumption (kWh)
   - Weekly energy consumption (kWh)
   - Monthly energy consumption (kWh)
+  - Wifi connection stats
 
 ## Hardware
 
@@ -38,7 +39,7 @@ N = number of phases to be measured (1, 2 or 3)
 - 2 x N x 10 kOhm resistor
 - N x 10uF electrolytic capacitor
 - N x 22 Ohm resistor. If using another range/model of current sensor, the resistance will change or the resistor will not be needed at all.
-- N x 2.5mm stereo audio connector
+- N x 3.5mm stereo audio connector
 - Wires and a prototype board for connecting everything
 
 ![Parts and final assembly](images/electronic_parts.png)
@@ -198,12 +199,21 @@ MQTT integration is disabled by default. To enable, uncomment the lines in the y
 
 - **I don't have a neutral wire. Can I use 2 phases for voltage measurement?** Yes, but you need to change the power calculations in the code.
 
-- **Losing Wifi or MQTT connection** Try to decrease the CROSSINGS setting in *esp32emon.h*. The blocking nature for Emonlib sometimes does this.
+- **Losing Wifi, MQTT connection or constant reboots:** Try to decrease the CROSSINGS setting in *esp32emon.h*. The blocking nature for Emonlib sometimes does this.
 
-- **ESPHome webserver is crashing** The web server was disabled because it was crashing the ESP32. due the blocking nature of Emon library. You may be able to run it if you decrease the CROSSINGS setting in *esp32emon.h*.
+- **ESPHome webserver is crashing:** The web server was disabled because it was crashing the ESP32. due the blocking nature of Emon library. You may be able to run it if you decrease the CROSSINGS setting in *esp32emon.h*.
 
-## Download sources
-- [GitHub Releases](https://github.com/danpeig/ESP32EnergyMonitor/releases/)
+- **Negative power readings:** Double check the CT clamp connections. Try inverting the clamp direction in the wire.
+
+## Download
+- [GitHub Release](https://github.com/danpeig/ESP32EnergyMonitor/releases/)
+
+## Version history
+- 1.0 (24/12/2022)
+  - Initial release
+- 1.1 (27/12/2022)
+  - Added Wifi connection status outputs
+  - Improved current and voltage calibration output visuals
 
 ## Further reading and references
 - [Savjee Home Energy monitor with ESP32](https://savjee.be/blog/Home-Energy-Monitor-ESP32-CT-Sensor-Emonlib/)
