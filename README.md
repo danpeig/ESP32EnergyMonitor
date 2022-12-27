@@ -12,7 +12,8 @@ The solution I present here is a DIY project built on the top of [Open Energy Mo
 - ESPHome based firmware
 - Generic firmware source that can be used without ESPHome (*calibrate-vi.ino*)
 - Plug and Play integration with [Home Assistant](https://www.home-assistant.io/)
-- MQTT integration
+- Ready for [Home Assistant](https://www.home-assistant.io/) energy dashboard
+- MQTT integration option
 - No cloud services required
 - 100% open source
 - Extremely cheap to build
