@@ -1,4 +1,4 @@
-# ESP32 Open Source Energy Monitor
+# ESP32 + ESPHome Open Source Energy Monitor
 
 ## Introduction
 For months I've been looking for a non-intrusive energy monitoring solution for my home. The residence receives more than one phase from the utility company and because of that, the available solutions in the market based on open protocols are extremely expensive. Cheap alternatives always rely on cloud services and I don't believe any of them will remain online for too long.
