@@ -211,11 +211,11 @@ MQTT integration is disabled by default. To enable, uncomment the lines in the y
 - [GitHub Release](https://github.com/danpeig/ESP32EnergyMonitor/releases/)
 
 ## Version history
-- 1.0 (24/12/2022)
-  - Initial release
 - 1.1 (27/12/2022)
   - Added Wifi connection status outputs
   - Improved current and voltage calibration output visuals
+- 1.0 (24/12/2022)
+  - Initial release
 
 ## Further reading and references
 - [Savjee Home Energy monitor with ESP32](https://savjee.be/blog/Home-Energy-Monitor-ESP32-CT-Sensor-Emonlib/)
