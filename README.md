@@ -212,7 +212,7 @@ MQTT integration is disabled by default. To enable, uncomment the lines in the y
 
 ## Version history
 - 1.2 (31/12/2022)
-  - Changed Power Factors state class to "measurement" to prevent log pollution
+  - Changed Power Factor state class to "measurement" to prevent log pollution
 - 1.1 (27/12/2022)
   - Added Wifi connection status outputs
   - Improved current and voltage calibration output visuals
