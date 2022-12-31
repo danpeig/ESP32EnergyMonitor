@@ -8,7 +8,7 @@ esphome:
     - esp32emon.h
   project:
     name: danpeig.esp32emon
-    version: "1.1.0"
+    version: "1.2.0"
 
 # Board configuration
 esp32:
@@ -116,6 +116,7 @@ sensor:
         internal: false
       - name: "Power Factor P1"
         device_class: "power_factor"
+        state_class: "measurement"
         accuracy_decimals: 2
         internal: false
       - name: "Voltage P1"
@@ -144,6 +145,7 @@ sensor:
         internal: false
       - name: "Power Factor P2"
         device_class: "power_factor"
+        state_class: "measurement"
         accuracy_decimals: 2
         internal: false
       - name: "Voltage P2"
@@ -171,6 +173,7 @@ sensor:
       #  internal: false
       #- name: "Power Factor P3"
       #  device_class: "power_factor"
+      #  state_class: "measurement"
       #  accuracy_decimals: 2
       #  internal: false
       #- name: "Voltage P3"
