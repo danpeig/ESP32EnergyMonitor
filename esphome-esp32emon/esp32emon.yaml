@@ -8,7 +8,7 @@ esphome:
     - esp32emon.h
   project:
     name: danpeig.esp32emon
-    version: "1.2.0"
+    version: "1.3.0"
 
 # Board configuration
 esp32:
@@ -108,27 +108,82 @@ sensor:
         state_class: "measurement"
         accuracy_decimals: 1
         internal: false
+        filters:
+          - lambda: |-
+              //Avoid corrupting integration sensors
+              if(!isinf(x) && !isnan(x) && x >= 0 && x <= 10e6)
+                {
+                return x;
+                }
+              else
+                {
+                return 0;
+                }
       - name: "Apparent Power P1"
         device_class: "apparent_power"
         unit_of_measurement: VA
         state_class: "measurement"
         accuracy_decimals: 1
         internal: false
+        filters:
+          - lambda: |-
+              //Avoid corrupting integration sensors
+              if(!isinf(x) && !isnan(x) && x >= 0 && x <= 10e6)
+                {
+                return x;
+                }
+              else
+                {
+                return 0;
+                }
       - name: "Power Factor P1"
         device_class: "power_factor"
         state_class: "measurement"
         accuracy_decimals: 2
         internal: false
+        filters:
+          - lambda: |-
+              //Avoid corrupting integration sensors
+              if(!isinf(x) && !isnan(x) && x >= 0 && x <= 10e6)
+                {
+                return x;
+                }
+              else
+                {
+                return 0;
+                }        
       - name: "Voltage P1"
         device_class: "voltage"
         unit_of_measurement: V
         accuracy_decimals: 1
         internal: false
+        filters:
+          - lambda: |-
+              //Avoid corrupting integration sensors
+              if(!isinf(x) && !isnan(x) && x >= 0 && x <= 10e6)
+                {
+                return x;
+                }
+              else
+                {
+                return 0;
+                }   
       - name: "Current P1"
         device_class: "current"
         unit_of_measurement: A
         accuracy_decimals: 1
         internal: false
+        filters:
+          - lambda: |-
+              //Avoid corrupting integration sensors
+              if(!isinf(x) && !isnan(x) && x >= 0 && x <= 10e6)
+                {
+                return x;
+                }
+              else
+                {
+                return 0;
+                }   
 
         #Phase 2 sensors
       - name: "Real Power P2"
@@ -137,54 +192,166 @@ sensor:
         state_class: "measurement"
         accuracy_decimals: 1
         internal: false
+        filters:
+          - lambda: |-
+              //Avoid corrupting integration sensors
+              if(!isinf(x) && !isnan(x) && x >= 0 && x <= 10e6)
+                {
+                return x;
+                }
+              else
+                {
+                return 0;
+                }   
       - name: "Apparent Power P2"
         device_class: "apparent_power"
         unit_of_measurement: VA
         state_class: "measurement"
         accuracy_decimals: 1
         internal: false
+        filters:
+          - lambda: |-
+              //Avoid corrupting integration sensors
+              if(!isinf(x) && !isnan(x) && x >= 0 && x <= 10e6)
+                {
+                return x;
+                }
+              else
+                {
+                return 0;
+                }   
       - name: "Power Factor P2"
         device_class: "power_factor"
         state_class: "measurement"
         accuracy_decimals: 2
         internal: false
+        filters:
+          - lambda: |-
+              //Avoid corrupting integration sensors
+              if(!isinf(x) && !isnan(x) && x >= 0 && x <= 10e6)
+                {
+                return x;
+                }
+              else
+                {
+                return 0;
+                }   
       - name: "Voltage P2"
         device_class: "voltage"
         unit_of_measurement: V
         accuracy_decimals: 1
+        internal: false
+        filters:
+          - lambda: |-
+              //Avoid corrupting integration sensors
+              if(!isinf(x) && !isnan(x) && x >= 0 && x <= 10e6)
+                {
+                return x;
+                }
+              else
+                {
+                return 0;
+                }   
       - name: "Current P2"
         device_class: "current"
         unit_of_measurement: A
         accuracy_decimals: 1
         internal: false
+        filters:
+          - lambda: |-
+              //Avoid corrupting integration sensors
+              if(!isinf(x) && !isnan(x) && x >= 0 && x <= 10e6)
+                {
+                return x;
+                }
+              else
+                {
+                return 0;
+                }   
 
       #  #Phase 3 sensors
-      #- name: "Real Power P3"
-      #  device_class: "power"
-      #  unit_of_measurement: W
-      #  state_class: "measurement"
-      #  accuracy_decimals: 1
-      #  internal: false
-      #- name: "Apparent Power P3"
-      #  device_class: "apparent_power"
-      #  unit_of_measurement: VA
-      #  state_class: "measurement"
-      #  accuracy_decimals: 1
-      #  internal: false
-      #- name: "Power Factor P3"
-      #  device_class: "power_factor"
-      #  state_class: "measurement"
-      #  accuracy_decimals: 2
-      #  internal: false
-      #- name: "Voltage P3"
-      #  device_class: "voltage"
-      #  unit_of_measurement: V
-      #  accuracy_decimals: 1
-      #- name: "Current P3"
-      #  device_class: "current"
-      #  unit_of_measurement: A
-      #  accuracy_decimals: 1
-      #  internal: false
+      # - name: "Real Power P3"
+      #   device_class: "power"
+      #   unit_of_measurement: W
+      #   state_class: "measurement"
+      #   accuracy_decimals: 1
+      #   internal: false
+      #   filters:
+      #     - lambda: |-
+      #         //Avoid corrupting integration sensors
+      #         if(!isinf(x) && !isnan(x) && x >= 0 && x <= 10e6)
+      #           {
+      #           return x;
+      #           }
+      #         else
+      #           {
+      #           return 0;
+      #           }   
+      # - name: "Apparent Power P3"
+      #   device_class: "apparent_power"
+      #   unit_of_measurement: VA
+      #   state_class: "measurement"
+      #   accuracy_decimals: 1
+      #   internal: false
+      #   filters:
+      #     - lambda: |-
+      #         //Avoid corrupting integration sensors
+      #         if(!isinf(x) && !isnan(x) && x >= 0 && x <= 10e6)
+      #           {
+      #           return x;
+      #           }
+      #         else
+      #           {
+      #           return 0;
+      #           }   
+      # - name: "Power Factor P3"
+      #   device_class: "power_factor"
+      #   state_class: "measurement"
+      #   accuracy_decimals: 2
+      #   internal: false
+      #   filters:
+      #     - lambda: |-
+      #         //Avoid corrupting integration sensors
+      #         if(!isinf(x) && !isnan(x) && x >= 0 && x <= 10e6)
+      #           {
+      #           return x;
+      #           }
+      #         else
+      #           {
+      #           return 0;
+      #           }   
+      # - name: "Voltage P3"
+      #   device_class: "voltage"
+      #   unit_of_measurement: V
+      #   accuracy_decimals: 1
+      #   internal: false
+      #   filters:
+      #     - lambda: |-
+      #         //Avoid corrupting integration sensors
+      #         if(!isinf(x) && !isnan(x) && x >= 0 && x <= 10e6)
+      #           {
+      #           return x;
+      #           }
+      #         else
+      #           {
+      #           return 0;
+      #           }   
+      # - name: "Current P3"
+      #   device_class: "current"
+      #   unit_of_measurement: A
+      #   accuracy_decimals: 1
+      #   internal: false
+      #   filters:
+      #     - lambda: |-
+      #         //Avoid corrupting integration sensors
+      #         if(!isinf(x) && !isnan(x) && x >= 0 && x <= 10e6)
+      #           {
+      #           return x;
+      #           }
+      #         else
+      #           {
+      #           return 0;
+      #           }  
 
       #Total sensors
       - name: "Total Real Power"
@@ -197,7 +364,7 @@ sensor:
         filters:
           - lambda: |-
               //Avoid corrupting integration sensors
-              if(!isinf(x) && !isnan(x) && x >= 0)
+              if(!isinf(x) && !isnan(x) && x >= 0 && x <= 10e6)
                 {
                 return x;
                 }
@@ -214,7 +381,7 @@ sensor:
         filters:
           - lambda: |-
               //Avoid corrupting integration sensors
-              if(!isinf(x) && !isnan(x) && x >= 0)
+              if(!isinf(x) && !isnan(x) && x >= 0 && x <= 10e6)
                 {
                 return x;
                 }
@@ -228,6 +395,17 @@ sensor:
         unit_of_measurement: A
         accuracy_decimals: 1
         internal: false
+        filters:
+          - lambda: |-
+              //Avoid corrupting integration sensors
+              if(!isinf(x) && !isnan(x) && x >= 0 && x <= 10e6)
+                {
+                return x;
+                }
+              else
+                {
+                return 0;
+                }
 
   - platform: integration
     name: "Daily Consumption"
@@ -277,7 +455,7 @@ sensor:
 
   - platform: copy # Reports the WiFi signal strength in %
     source_id: wifi_signal_db
-    name: "WiFi signal percent"
+    name: "WiFi signal"
     filters:
       - lambda: return min(max(2 * (x + 100.0), 0.0), 100.0);
     unit_of_measurement: "%"

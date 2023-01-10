@@ -1,7 +1,7 @@
 # ESP32 + ESPHome Open Source Energy Monitor
 
 ## Introduction
-For months I've been looking for a non-intrusive energy monitoring solution for my home. The residence receives more than one phase from the utility company and because of that, the available solutions in the market based on open protocols are extremely expensive. Cheap alternatives always rely on cloud services and I don't believe any of them will remain online for too long.
+For months I've been looking for a non-intrusive energy monitoring solution for my home. The residence receives more than one phase from the utility company and the available solutions in the market based on open protocols are extremely expensive for this setup. Cheap alternatives always rely on cloud services and I don't believe any of them will remain online for too long.
 
 The solution I present here is a DIY project built on the top of [Open Energy Monitor](https://openenergymonitor.org/) and [ESPHome framework](https://esphome.io/). I selected the ESP32 controller because it has several analog ports to measure voltage and current.
 
@@ -26,7 +26,7 @@ The solution I present here is a DIY project built on the top of [Open Energy Mo
   - Daily energy consumption (kWh)
   - Weekly energy consumption (kWh)
   - Monthly energy consumption (kWh)
-  - Wifi connection stats
+  - Wifi connection stats (SSID, Signal and IP)
 
 ## Hardware
 
@@ -176,7 +176,8 @@ This piece of code can also be used to create your own Energy Monitoring solutio
 
 ### Flashing ESPHome firmware to the ESP32 board
 
-```esphome run esp32emon.yaml```
+- Compile and upload: ```esphome run esp32emon.yaml```
+- Compile and upload to a remote device using the IP address (if automatic host detection fails): ```esphome run esp32emon.yaml --device= 192.168.0.15```
 
 Please refer to [ESPHome website](https://esphome.io/guides/getting_started_command_line.html) for detailed instructions.
 
@@ -205,12 +206,14 @@ MQTT integration is disabled by default. To enable, uncomment the lines in the y
 
 - **ESPHome webserver is crashing:** The web server was disabled because it was crashing the ESP32. due the blocking nature of Emon library. You may be able to run it if you decrease the CROSSINGS setting in *esp32emon.h*.
 
-- **Negative power readings:** Double check the CT clamp connections. Try inverting the clamp direction in the wire.
+- **Voltage and current are displayed but the power is zero:** Double check the CT clamp connections. Try inverting the clamp direction in the wire. 
 
 ## Download
 - [GitHub Release](https://github.com/danpeig/ESP32EnergyMonitor/releases/)
 
 ## Version history
+- 1.3 (10/01/2023)
+  - Added filters to all sensors to prevent integrators corruption.
 - 1.2 (31/12/2022)
   - Changed Power Factor state class to "measurement" to prevent log pollution
 - 1.1 (27/12/2022)
