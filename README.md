@@ -10,7 +10,7 @@ The solution I present here is a DIY project built on the top of [Open Energy Mo
 - 1 to 3 phase voltage measurement
 - Non-intrusive: There is no need to disconnect, cut or peel power cables
 - [ESPHome](https://esphome.io/) based firmware
-- Generic firmware source (*calibrate-vi.ino*) that can run without ESPHome 
+- Generic firmware (*calibrate-vi.ino*) that can run without ESPHome 
 - Plug and Play integration with [Home Assistant](https://www.home-assistant.io/)
 - Ready for [Home Assistant](https://www.home-assistant.io/) energy dashboard
 - MQTT integration option
