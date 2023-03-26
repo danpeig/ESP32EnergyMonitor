@@ -73,6 +73,8 @@ This diagram illustrates the typical connection of a single current probe and a 
 
 The voltage meter must be installed between the **neutral line** and one **phase**, not between phases.
 
+The current clamp must be installed in a specific direction according to the current flow. Usually the arrows in the clamp housing point to the right direction.
+
 ![ESP32 Energy Monitor Schematic](images/ESP32-Energy-Monitor.png)
 
 
@@ -130,7 +132,7 @@ This piece of code can also be used to create your own Energy Monitoring solutio
 1. Set up the hardware, the potentiometer of the voltage sensor should be already adjusted.
 2. Find an "almost pure" resistive load (no motors, no reactors, no electromagnets, no LEDs). Examples: heater, boiler, electric shower, electric oven, kettle...
 3. Install a voltmeter and ammeter to use as reference.
-4. Connect the voltage measurement and current measurement sensors. Please note the direction of the current clamp matters.
+4. Connect the voltage measurement and current measurement sensors. Please note the direction of the current clamp is important.
 5. Edit the sketch *calibrate-vi.ino* and set the correct GPIO pins for the sensors. 
 6. Set the calibration coefficients CV1, CV2, CV3, CI1, CI2 and CI3 to 1000 in the same file.
 7. Compile and update the code from Arduino IDE.
