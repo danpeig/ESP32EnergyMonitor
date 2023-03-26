@@ -130,7 +130,7 @@ This piece of code can also be used to create your own Energy Monitoring solutio
 1. Set up the hardware, the potentiometer of the voltage sensor should be already adjusted.
 2. Find an "almost pure" resistive load (no motors, no reactors, no electromagnets, no LEDs). Examples: heater, boiler, electric shower, electric oven, kettle...
 3. Install a voltmeter and ammeter to use as reference.
-4. Connect the voltage measurement and current measurement sensors.
+4. Connect the voltage measurement and current measurement sensors. Please note the direction of the current clamp matters.
 5. Edit the sketch *calibrate-vi.ino* and set the correct GPIO pins for the sensors. 
 6. Set the calibration coefficients CV1, CV2, CV3, CI1, CI2 and CI3 to 1000 in the same file.
 7. Compile and update the code from Arduino IDE.
@@ -206,7 +206,7 @@ MQTT integration is disabled by default. To enable, uncomment the lines in the y
 
 - **ESPHome webserver is crashing:** The web server was disabled because it was crashing the ESP32. due the blocking nature of Emon library. You may be able to run it if you decrease the CROSSINGS setting in *esp32emon.h*.
 
-- **Voltage and current are displayed but the power is zero:** Double check the CT clamp connections. Try inverting the clamp direction in the wire. 
+- **Voltage and current are displayed but the power is incorrect or the power factor is too low:** Double check the CT clamp connections. Try inverting the clamp direction in the wire. 
 
 ## Download
 - [GitHub Release](https://github.com/danpeig/ESP32EnergyMonitor/releases/)
