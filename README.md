@@ -73,7 +73,7 @@ This diagram illustrates the typical connection of a single current probe and a 
 
 The voltage meter must be installed between the **neutral line** and one **phase**, not between phases.
 
-The current clamp must be installed in a specific direction according to the current flow. Usually the arrows in the clamp housing point to the right direction.
+The current clamp must be installed in a specific direction according to the current flow. Usually, the arrows in the clamp housing point to the right direction but don't hesitate to change if you note that the power factor and real power readings are too low.
 
 ![ESP32 Energy Monitor Schematic](images/ESP32-Energy-Monitor.png)
 
