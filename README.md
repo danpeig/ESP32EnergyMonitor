@@ -214,6 +214,9 @@ MQTT integration is disabled by default. To enable, uncomment the lines in the y
 - [GitHub Release](https://github.com/danpeig/ESP32EnergyMonitor/releases/)
 
 ## Version history
+- 1.4 (02/04/2023)
+  - Fixed Wifi Signal % device class error
+  - Improved instructions regarding correct direction of the CT probe
 - 1.3 (10/01/2023)
   - Added filters to all sensors to prevent integrators corruption.
 - 1.2 (31/12/2022)
