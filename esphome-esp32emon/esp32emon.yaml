@@ -88,6 +88,8 @@ time:
 button:
   - platform: restart
     name: "Reboot energy monitor"
+  - platform: safe_mode
+    name: "Reboot energy monitor in Safe Mode"
 
 sensor:
   #Custom sensors from EMon
