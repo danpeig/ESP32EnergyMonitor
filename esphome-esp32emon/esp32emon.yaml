@@ -85,6 +85,10 @@ time:
         then:
           - sensor.integration.reset: total_energy_day #Reset power integrator
 
+button:
+  - platform: restart
+    name: "Reboot energy monitor"
+
 sensor:
   #Custom sensors from EMon
   - platform: custom
