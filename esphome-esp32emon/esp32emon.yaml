@@ -29,6 +29,7 @@ logger:
 
 # Enable Home Assistant API
 api:
+ reboot_timeout: 60s
 
 # Enable OTA updates
 ota:
@@ -36,6 +37,7 @@ ota:
 
 # Wifi configuration
 wifi:
+  reboot_timeout: 60s
   networks:
     # Main network
     - ssid: !secret wifi_ssid
