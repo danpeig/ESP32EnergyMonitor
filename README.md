@@ -3,11 +3,9 @@
 ----
 
 ## Important notice!
-ESPHome has deprecated Custom Components support. The last version that supports this feature is *2012.12.4*
+ESPHome has deprecated Custom Components support. The last version that supports this feature is *2024.12.4*
 
-The deprecation will only affect newly flashed devices and will not impact existing devices.
-
-If you need to update your energy monitor or build a new device, make sure you are using ESPHome version *2012.12.4* to build:
+If you need to update your energy monitor or build a new device, make sure you are using ESPHome version *2024.12.4* to build:
 
 `pip install esphome==2024.12.4`
 
