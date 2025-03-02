@@ -7,9 +7,11 @@ ESPHome has deprecated Custom Components support. The last version that supports
 
 The deprecation will only affect newly flashed devices and will not impact existing devices.
 
-If you need to update your energy monitor or build a new device, make sure you are using ESPHome version *2012.12.4*:
+If you need to update your energy monitor or build a new device, make sure you are using ESPHome version *2012.12.4* to build:
 
 `pip install esphome==2024.12.4`
+
+After flashing the firmware you can update to the latest version of ESPHome.
 
 ----
 
@@ -195,6 +197,9 @@ This piece of code can also be used to create your own Energy Monitoring solutio
 - Compile and upload to a remote device using the IP address (if automatic host detection fails): ```esphome run esp32emon.yaml --device= 192.168.0.15```
 
 Please refer to [ESPHome website](https://esphome.io/guides/getting_started_command_line.html) for detailed instructions.
+
+**Important:** Maximum supported version of ESPHome is *2024.12.12*. Make sure you are using it:
+`pip install esphome==2024.12.4`
 
 **TIP:** If you want to go fast, avoid Docker version of ESPHome, use [manual installation](https://esphome.io/guides/installing_esphome.html) instead. The connection to hardware devices from the manual installation is much easier than from a container.
 
