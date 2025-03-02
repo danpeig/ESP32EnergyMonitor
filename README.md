@@ -1,13 +1,17 @@
 # ESP32 + ESPHome Open Source Energy Monitor
 
+----
+
 ## Important notice!
 ESPHome has deprecated Custom Components support. The last version that supports this feature is *2012.12.4*
 
 The deprecation will only affect newly flashed devices and will not impact existing devices.
 
-If you want to use this software or need to update your energy monitor, build flash the firmware using ESPHome version *2012.12.4*:
+If you need to update your energy monitor or build a new device, make sure you are using ESPHome version *2012.12.4*:
 
 `pip install esphome==2024.12.4`
+
+----
 
 ## Introduction
 For months I've been looking for a non-intrusive energy monitoring solution for my home. The residence receives more than one phase from the utility company and the available solutions in the market based on open protocols are extremely expensive for this setup. Cheap alternatives always rely on cloud services and I don't believe any of them will remain online for too long.
