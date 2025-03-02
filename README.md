@@ -196,7 +196,7 @@ This piece of code can also be used to create your own Energy Monitoring solutio
 
 Please refer to [ESPHome website](https://esphome.io/guides/getting_started_command_line.html) for detailed instructions.
 
-**Important:** Maximum supported version of ESPHome is *2024.12.12*. Make sure you are using it:
+**Important:** Maximum supported version of ESPHome is *2024.12.4*. Make sure you are using it to build the flash
 `pip install esphome==2024.12.4`
 
 **TIP:** If you want to go fast, avoid Docker version of ESPHome, use [manual installation](https://esphome.io/guides/installing_esphome.html) instead. The connection to hardware devices from the manual installation is much easier than from a container.
