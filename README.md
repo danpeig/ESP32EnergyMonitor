@@ -2,17 +2,6 @@
 
 ----
 
-## Important notice!
-ESPHome has deprecated Custom Components support. The last version that supports this feature is *2024.12.4*
-
-If you need to update your energy monitor or build a new device, make sure you are using ESPHome version *2024.12.4* to build:
-
-`pip install esphome==2024.12.4`
-
-After flashing the firmware you can update to the latest version of ESPHome.
-
-----
-
 ## Introduction
 For months I've been looking for a non-intrusive energy monitoring solution for my home. The residence receives more than one phase from the utility company and the available solutions in the market based on open protocols are extremely expensive for this setup. Cheap alternatives always rely on cloud services and I don't believe any of them will remain online for too long.
 
@@ -103,7 +92,7 @@ All tools require editing some configuration files before uploading to the ESP32
 **NOTE:** The EmonLib used in the package was modified by [Savjee](https://github.com/Savjee/EmonLib-esp32) to support the ESP32 board.
 
 ### Requirements
-- [ESPHome](https://esphome.io/) maximum version 2024.12.4
+- [ESPHome](https://esphome.io/)
 - [Arduino IDE 2.0 or higher](https://www.arduino.cc/)
 - Any text editor for customizing the other files
 - Micro USB cable to connect with the ESP32 development board
@@ -196,8 +185,7 @@ This piece of code can also be used to create your own Energy Monitoring solutio
 
 Please refer to [ESPHome website](https://esphome.io/guides/getting_started_command_line.html) for detailed instructions.
 
-**Important:** Maximum supported version of ESPHome is *2024.12.4*. Make sure you are using it to build the flash
-`pip install esphome==2024.12.4`
+`pip install esphome`
 
 **TIP:** If you want to go fast, avoid Docker version of ESPHome, use [manual installation](https://esphome.io/guides/installing_esphome.html) instead. The connection to hardware devices from the manual installation is much easier than from a container.
 
@@ -230,6 +218,8 @@ MQTT integration is disabled by default. To enable, uncomment the lines in the y
 - [GitHub Release](https://github.com/danpeig/ESP32EnergyMonitor/releases/)
 
 ## Version history
+- 1.6 (01/05/2025)
+  - Workaround for custom components support in the 2025 versions of ESPHome.
 - 1.5 (16/06/2023)
   - "restart" and "restart in safe mode" buttons added to the HomeAssistant interface.
 - 1.4 (02/04/2023)
