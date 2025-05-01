@@ -16,7 +16,7 @@ esp32:
   framework:
     type: arduino
 
-# Brings back custom_component support (thanks to Rober Klep)
+# Brings back custom_component support (thanks to Robert Klep)
 external_components:
   - source:
       type: git
