@@ -16,6 +16,13 @@ esp32:
   framework:
     type: arduino
 
+# Brings back custom_component support (thanks to Rober Klep)
+external_components:
+  - source:
+      type: git
+      url: https://github.com/robertklep/esphome-custom-component
+    components: [ custom, custom_component ]
+
 # Sets up Bluetooth LE (Only on ESP32) to allow the user
 # to provision wifi credentials to the device.
 esp32_improv:
