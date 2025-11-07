@@ -3,8 +3,11 @@
 #include "esp_task_wdt.h" //Watchdog control features
 #define ESP32
 
-// Watchdog timeout in seconds
-#define WDT_TIMEOUT 5 
+// Watchdog timeout in miliseconds
+#define WDT_TIMEOUT 5000 
+// Watchdog number of cores
+// If it does not work with 1, try 2...
+#define CONFIG_FREERTOS_NUMBER_OF_CORES 1
 
 // The Sample window length is defined by the number of half wavelengths or crossings we choose to measure.
 // 120 is quite conservative for two phases
@@ -73,7 +76,15 @@ public:
   void setup() override
   {
 
-    esp_task_wdt_init(WDT_TIMEOUT, true); // enable panic so ESP32 restarts
+    //WDT configuration
+    esp_task_wdt_config_t twdt_config = {
+        .timeout_ms = WDT_TIMEOUT,
+        .idle_core_mask = (1 << CONFIG_FREERTOS_NUMBER_OF_CORES) - 1,    // Bitmask of all cores
+        .trigger_panic = true,
+    };
+    esp_task_wdt_deinit(); //wdt is enabled by default, so we need to deinit it first
+    esp_task_wdt_init(&twdt_config); //enable panic so ESP32 restarts
+    //esp_task_wdt_init(WDT_TIMEOUT, true); // enable panic so ESP32 restarts
     esp_task_wdt_add(NULL);               // add current thread to WDT watch
 
     /*
