@@ -8,7 +8,7 @@ esphome:
     - esp32emon.h
   project:
     name: danpeig.esp32emon
-    version: "1.6.0"
+    version: "1.6.1"
 
 # Board configuration
 esp32:
@@ -40,6 +40,7 @@ api:
 
 # Enable OTA updates
 ota:
+- platform: esphome
   password: !secret ota_password
 
 # Wifi configuration
